@@ -3,10 +3,15 @@ import csv
 from huggingface_hub import login
 from datetime import date
 import pandas as pd
-login("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")
+from dotenv import load_dotenv
+import os
 
-tokenizer = RobertaTokenizerFast.from_pretrained("arpanghoshal/EmoRoBERTa")
-model = TFRobertaForSequenceClassification.from_pretrained("arpanghoshal/EmoRoBERTa")
+
+load_dotenv()
+token = os.getenv("HF_TOKEN")
+
+
+login(token)
 
 emotion = pipeline("text-classification", model="j-hartmann/emotion-english-distilroberta-base", return_all_scores = True)
 
@@ -16,7 +21,7 @@ emotion_labels = emotion(log)
 print(emotion_labels)
 
 date = date.today()
-emotion_scores = {item['label']: item['score'] for item in data[0]}
+emotion_scores = {item['label']: item['score'] for item in emotion_labels[0]}
 anger = emotion_scores['anger']
 disgust = emotion_scores['disgust']
 fear = emotion_scores['fear']
@@ -31,4 +36,4 @@ data = [date, anger, disgust, fear, joy, neutral, sadness, surprise, happiness_s
 
 columns = ["Date", "Anger_Score","Disgust_Score","Fear_Score","Joy_Score","Neutral_Score","Sadness_Score","Surprise_Score","Happiness_Score", "Text"]
 
-df = pd.DataFrame(data, columns = columns)
+df = pd.DataFrame([data], columns = columns)
