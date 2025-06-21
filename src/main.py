@@ -3,7 +3,13 @@ import csv
 from huggingface_hub import login
 from datetime import date
 import pandas as pd
-login("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")
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+token = os.getenv("HF_TOKEN")
+
+login(token)
 
 tokenizer = RobertaTokenizerFast.from_pretrained("arpanghoshal/EmoRoBERTa")
 model = TFRobertaForSequenceClassification.from_pretrained("arpanghoshal/EmoRoBERTa")
