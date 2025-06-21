@@ -4,6 +4,13 @@ import pandas as pd
 from google import genai
 from google.genai import types
 
+columns = ["Date", "Anger_Score","Disgust_Score","Fear_Score","Joy_Score","Neutral_Score","Sadness_Score","Surprise_Score","Happiness_Score", "Text"]
+
+df = pd.DataFrame(columns=columns) 
+
+def add_to_df(data):
+    new_row = pd.DataFrame([data], columns=df.columns)
+    df = pd.concat([df, new_row], ignore_index=True)
 
 def ask_ai(df):
    data_frame = df.sort_values(by='Date') 
@@ -25,29 +32,20 @@ def ask_ai(df):
 
 client = genai.Client(api_key="AIzaSyApoB8gTGfRy4UotGrIdgwcrfeLgKmep0g")
 
-columns = ["Date", "Anger_Score","Disgust_Score","Fear_Score","Joy_Score","Neutral_Score","Sadness_Score","Surprise_Score","Happiness_Score", "Text"]
+home_page = st.Page(
+    "views/homepage.py",
+    title="Welcome to Mooody!"
+)
+project_1_page = st.Page(
+    "views/journal.py",
+    title="Journal"
+)
+project_2_page = st.Page(
+    "views/chatbot.py",
+    title="Chat Bot",
+)
 
-df = pd.DataFrame(columns=columns)
-
-# Find more emojis here: https://www.webfx.com/tools/emoji-cheat-sheet/
-st.set_page_config(page_title="My Webpage", page_icon=":tada:", layout="wide")
-with st.container():
-   st.title("Welcome to Mooody!")
-
-if "visibility" not in st.session_state:
-   st.session_state.visibility = "visible"
-   st.session_state.disabled = False
-
-ai_question = ask_ai(df)
-text_input = st.text_input(
-       ai_question,
-       label_visibility=st.session_state.visibility,
-       disabled=st.session_state.disabled,
-   )
-
-pg = st.navigation([
-   st.Page("page2.py", title="SecondPage", icon=":material/favorite:"),
-])
+pg = st.navigation([home_page, project_1_page, project_2_page])
 
 pg.run()
 
