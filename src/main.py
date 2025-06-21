@@ -3,15 +3,7 @@ import csv
 from huggingface_hub import login
 from datetime import date
 import pandas as pd
-from dotenv import load_dotenv
 import os
-
-
-load_dotenv()
-token = os.getenv("HF_TOKEN")
-
-
-login(token)
 
 emotion = pipeline("text-classification", model="j-hartmann/emotion-english-distilroberta-base", return_all_scores = True)
 
