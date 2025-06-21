@@ -44,8 +44,12 @@ project_2_page = st.Page(
     "views/chatbot.py",
     title="Chat Bot",
 )
+project_3_page = st.Page(
+    "views/mood_dashboard.py",
+    title = "Mood Dashboard"
+)
 
-pg = st.navigation([home_page, project_1_page, project_2_page])
+pg = st.navigation([home_page, project_1_page, project_2_page, project_3_page])
 
 pg.run()
 
