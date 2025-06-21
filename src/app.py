@@ -46,7 +46,7 @@ text_input = st.text_input(
    )
 
 pg = st.navigation([
-   st.Page(page2, title="SecondPage", icon=":material/favorite:"),
+   st.Page("page2.py", title="SecondPage", icon=":material/favorite:"),
 ])
 
 pg.run()
