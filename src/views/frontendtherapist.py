@@ -1,5 +1,7 @@
 import streamlit as st
 from therapist import get_response
+from main import addlogo
+addlogo()
 
 st.set_page_config(page_title="Therapist Bot", page_icon="🧠")
 

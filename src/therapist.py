@@ -3,7 +3,7 @@ from google import genai
 from google.genai import types
 
 #modified to sync with frontend
-client = genai.Client(api_key=os.getenv("AIzaSyApoB8gTGfRy4UotGrIdgwcrfeLgKmep0g"))
+client = genai.Client(api_key="AIzaSyApoB8gTGfRy4UotGrIdgwcrfeLgKmep0g")
 model = "gemini-2.5-flash"
 
 system_instruction = types.Part(text="""

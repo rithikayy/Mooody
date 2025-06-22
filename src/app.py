@@ -15,6 +15,8 @@ def add_to_df(data):
     new_row = pd.DataFrame([data], columns=df.columns)
     df = pd.concat([df, new_row], ignore_index=True)
 
+client = genai.Client(api_key="AIzaSyApoB8gTGfRy4UotGrIdgwcrfeLgKmep0g")
+
 def ask_ai(df):
    data_frame = df.sort_values(by='Date') 
    if not data_frame.empty:
@@ -33,8 +35,6 @@ def ask_ai(df):
    )
    return response.text
 
-client = genai.Client(api_key="AIzaSyApoB8gTGfRy4UotGrIdgwcrfeLgKmep0g")
-
 home_page = st.Page(
     "views/homepage.py",
     title="Welcome to Mooody!"
@@ -44,15 +44,20 @@ project_1_page = st.Page(
     title="Journal"
 )
 project_2_page = st.Page(
-    "views/chatbot.py",
-    title="Chat Bot",
+    "views/frontendtherapist.py",
+    title="Therapist Bot",
 )
 project_3_page = st.Page(
     "views/mood_dashboard.py",
     title = "Mood Dashboard"
 )
+project_4_page = st.Page(
+    "views/draw.py",
+    title = "Sketchbook"
+)
 
-pg = st.navigation([home_page, project_1_page, project_2_page, project_3_page])
+
+pg = st.navigation([home_page, project_1_page, project_2_page, project_3_page, project_4_page])
 
 pg.run()
 
