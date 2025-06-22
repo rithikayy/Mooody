@@ -12,14 +12,14 @@ columns = ["Date", "Anger","Disgust","Fear","Joy","Neutral","Sadness","Surprise"
 df = pd.DataFrame(columns=columns) 
 
 def add_to_df(data, df):
-    new_row = pd.DataFrame([data], columns=df.columns)
-    df = pd.concat([df, new_row], ignore_index=True)
-    print(df)
+    new_row = pd.Series(data, index=df.columns)
+    df.loc[len(df)] = new_row
+    return df
 
 client = genai.Client(api_key="AIzaSyApoB8gTGfRy4UotGrIdgwcrfeLgKmep0g")
 
 def ask_ai(df):
-   data_frame = df.sort_values(by='Date') 
+   data_frame = st.session_state.df.sort_values(by='Date') 
    if not data_frame.empty:
        latest_entry = data_frame.iloc[-1]['Text']
    else:

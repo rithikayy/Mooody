@@ -12,19 +12,19 @@ addlogo()
 
 st.title("Moood Dashboard")
 st.text("Welcome to your Moood Dashboard! Here, you can analyze your moods by filtering through your moods, reading your past journal entries, and more! 🚀🐮")
-df['Date'] = pd.to_datetime(df['Date'])  
+df['Date'] = pd.to_datetime(st.session_state.df['Date'])  
 
 
 
 st.subheader("Filter moods")
-available_cols = df.columns.tolist()
+available_cols = st.session_state.df.columns.tolist()
 valid_moods = [m for m in ["Anger","Disgust","Fear","Joy","Neutral","Sadness","Surprise"] if m in available_cols]
 selected_column = st.selectbox("Select mood to filter by", valid_moods)
-unique_values = df[selected_column].unique()
+unique_values = st.session_state.df[selected_column].unique()
 selected_value = st.selectbox("Selected moods", unique_values)
 
 
-filtered_data = df[df[selected_column] == selected_value]
+filtered_data = st.session_state.df[st.session_state.df[selected_column] == selected_value]
 st.write(filtered_data)
 
 st.markdown("""
@@ -71,9 +71,9 @@ emotions_col = st.multiselect("Select mood(s) to plot", valid_moods)
 
 
 if st.button("Generate Plot") and emotions_col:
-    st.line_chart(df.set_index('Date')[emotions_col])
+    st.line_chart(st.session_state.df.set_index('Date')[emotions_col])
 
 
 # happiness score chart
 st.subheader("Mood Score Over Time")
-st.line_chart(df.set_index('Date')['Happiness Score'])
+st.line_chart(st.session_state.df.set_index('Date')['Happiness Score'])

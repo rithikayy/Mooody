@@ -8,13 +8,19 @@ addlogo()
 
 st.title("Journal")
 
-question = ask_ai(df)
+if 'df' not in st.session_state:
+    from app import df as app_df
+    st.session_state.df = app_df.copy()
 
-# user_input = st.text_input(question)
+question = ask_ai(st.session_state.df)
 
-text_input = st.text_area(question, height=200)
+text_input = st.text_area(question, height=200, key="journal_entry")
 
-if text_input:
-   data_row = analyzelog(text_input)
-   add_to_df(data_row, df)
-   
+if st.button("Submit Entry"):
+    data_row = analyzelog(text_input)
+    if data_row is not None:
+        st.session_state.df = add_to_df(data_row, st.session_state.df)
+        st.success("Entry added!")
+
+# Optionally, display current entries or charts
+st.write(st.session_state.df)
