@@ -9,9 +9,9 @@ from main import addlogo
 
 
 addlogo()
-
-st.title("Moood Dashboard")
-st.text("Welcome to your Moood Dashboard! Here, you can analyze your moods by filtering through your moods, reading your past journal entries, and more! 🚀🐮")
+st.set_page_config(page_title="Mooody - Dashboard", page_icon="photos/justcow_logo.png")
+st.title("Moood Dashboard 🚀🐮")
+st.text("Welcome to your Moood Dashboard! Here, you can analyze your moods by filtering through your moods, reading your past journal entries, and more!")
 df['Date'] = pd.to_datetime(df['Date'])  
 
 

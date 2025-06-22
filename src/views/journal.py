@@ -5,7 +5,7 @@ from main import addlogo
 from app import ask_ai, df
 
 addlogo()
-
+st.set_page_config(page_title="Mooody - Journal", page_icon="photos/justcow_logo.png")
 st.title("Journal")
 
 question = ask_ai(df)
