@@ -4,17 +4,25 @@ import pandas as pd
 from google import genai
 from google.genai import types
 from main import addlogo
+import os
+
+file_path = "data.csv"
 
 addlogo()
 
 columns = ["Date", "Anger","Disgust","Fear","Joy","Neutral","Sadness","Surprise","Happiness Score", "Text"]
 
+if os.path.exists(file_path):
+    df = pd.read_csv(file_path)
+else:
+    df = pd.DataFrame(columns=columns)
+
 df = pd.DataFrame(columns=columns) 
 
 def add_to_df(data, df):
-    new_row = pd.DataFrame([data], columns=df.columns)
-    df = pd.concat([df, new_row], ignore_index=True)
-    print(df)
+    df.loc[len(df)] = data
+    df.to_csv(file_path, index=False)
+
 
 client = genai.Client(api_key="AIzaSyApoB8gTGfRy4UotGrIdgwcrfeLgKmep0g")
 
@@ -25,7 +33,7 @@ def ask_ai(df):
    else:
        latest_entry = "No journal entries yet."
 
-   new_q = latest_entry + "Ask a question based on this journal entry. Keep it open-ended and be specific! If it's empty or not much content, just ask a basic open-ended question like 'how's your day?' BE STRAIGHTFORWARD AND BRIEF"
+   new_q = latest_entry + "Ask a question based on this journal entry. Keep it open-ended and be specific! If it's empty or not much content, just ask a basic open-ended question like 'how's your day?' BE STRAIGHTFORWARD AND BRIEF. DO NOT MAKE UP YOUR OWN JOURNAL ENTRY"
 
    response = client.models.generate_content(
        model="gemini-2.5-flash",

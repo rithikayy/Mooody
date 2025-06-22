@@ -9,7 +9,7 @@ from main import addlogo
 
 
 addlogo()
-
+st.set_page_config(page_title="Mooody - Dashboard", page_icon="photos/justcow_logo.png")
 st.title("Moood Dashboard")
 st.text("Welcome to your Moood Dashboard! Here, you can analyze your moods by filtering through your moods, reading your past journal entries, and more! 🚀🐮")
 df['Date'] = pd.to_datetime(df['Date'])  
@@ -20,12 +20,7 @@ st.subheader("Filter moods")
 available_cols = df.columns.tolist()
 valid_moods = [m for m in ["Anger","Disgust","Fear","Joy","Neutral","Sadness","Surprise"] if m in available_cols]
 selected_column = st.selectbox("Select mood to filter by", valid_moods)
-unique_values = df[selected_column].unique()
-selected_value = st.selectbox("Selected moods", unique_values)
-
-
-filtered_data = df[df[selected_column] == selected_value]
-st.write(filtered_data)
+st.write(df[["Date",selected_column, "Text"]])
 
 st.markdown("""
 <style>
@@ -75,5 +70,5 @@ if st.button("Generate Plot") and emotions_col:
 
 
 # happiness score chart
-st.subheader("Mood Score Over Time")
+st.subheader("Happiness Score Over Time")
 st.line_chart(df.set_index('Date')['Happiness Score'])

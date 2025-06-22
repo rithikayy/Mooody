@@ -5,7 +5,7 @@ from main import addlogo
 from app import ask_ai, df
 
 addlogo()
-
+st.set_page_config(page_title="Mooody - Journal", page_icon="photos/justcow_logo.png")
 st.title("Journal")
 
 question = ask_ai(df)
@@ -14,7 +14,9 @@ question = ask_ai(df)
 
 text_input = st.text_area(question, height=200)
 
-if text_input:
+if st.button("Submit Entry"):
    data_row = analyzelog(text_input)
-   add_to_df(data_row, df)
+   if data_row is not None:
+      add_to_df(data_row, df)
+      st.success("Entry added!")
    
