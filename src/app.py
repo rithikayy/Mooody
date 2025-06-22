@@ -11,9 +11,10 @@ columns = ["Date", "Anger","Disgust","Fear","Joy","Neutral","Sadness","Surprise"
 
 df = pd.DataFrame(columns=columns) 
 
-def add_to_df(data):
+def add_to_df(data, df):
     new_row = pd.DataFrame([data], columns=df.columns)
     df = pd.concat([df, new_row], ignore_index=True)
+    print(df)
 
 client = genai.Client(api_key="AIzaSyApoB8gTGfRy4UotGrIdgwcrfeLgKmep0g")
 

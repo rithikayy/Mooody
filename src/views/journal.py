@@ -16,5 +16,5 @@ text_input = st.text_area(question, height=200)
 
 if text_input:
    data_row = analyzelog(text_input)
-   add_to_df(data_row)
+   add_to_df(data_row, df)
    
