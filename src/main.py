@@ -22,7 +22,7 @@ def analyzelog(text):
 
     happiness_score = anger*1 + disgust*4 + fear*2 + joy*10 + neutral*5 +sadness*1 + surprise*6
 
-    data = [today_date, anger, disgust, fear, joy, neutral, sadness, surprise, happiness_score, text]
+    data = [today_date, anger, disgust, fear, joy, neutral, sadness, surprise, round(happiness_score), text]
 
     return data
 
