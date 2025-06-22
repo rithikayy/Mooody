@@ -1,3 +1,4 @@
+import streamlit as st
 from google.genai import types
 from google import genai
 from app import client, add_to_df, df
@@ -63,4 +64,4 @@ def sketchai(pic_path):
   happiness_score = mood_vals[0]*1 + mood_vals[1]*4 + mood_vals[2]*2 + mood_vals[3]*10 + mood_vals[4]*5 +mood_vals[5]*1 + mood_vals[6]*6
 
   data = [date.today(), anger, disgust, fear, joy, neutral, sadness, surprise, round(happiness_score), "Your beatiful artwork!"]
-  add_to_df(data,df)
+  st.session_state.df = add_to_df(data, st.session_state.df)
