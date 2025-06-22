@@ -3,7 +3,7 @@ from therapist import get_response
 from main import addlogo
 addlogo()
 
-st.set_page_config(page_title="Therapist Bot", page_icon="🧠")
+st.set_page_config(page_title="Mooody - Therapist Bot", page_icon="photos/justcow_logo.png")
 
 st.title("🐄 Mr.Moo")
 

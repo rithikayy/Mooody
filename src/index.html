@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐄 Mental Health Journal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌱 Your Mental Health Journal</h1>
+            <p class="subtitle">Take a moment to reflect on your day 🐄</p>
+        </header>
+
+        <main>
+            <form id="journal-form" class="journal-form">
+                <div class="form-section">
+                    <label class="form-label">How are you feeling today?</label>
+                    <div class="mood-scale">
+                        <div class="scale-labels">
+                            <span>Very Low</span>
+                            <span>Very High</span>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="mood-1" name="scale" value="1">
+                            <label for="mood-1">1</label>
+                            <input type="radio" id="mood-2" name="scale" value="2">
+                            <label for="mood-2">2</label>
+                            <input type="radio" id="mood-3" name="scale" value="3">
+                            <label for="mood-3">3</label>
+                            <input type="radio" id="mood-4" name="scale" value="4">
+                            <label for="mood-4">4</label>
+                            <input type="radio" id="mood-5" name="scale" value="5">
+                            <label for="mood-5">5</label>
+                            <input type="radio" id="mood-6" name="scale" value="6">
+                            <label for="mood-6">6</label>
+                            <input type="radio" id="mood-7" name="scale" value="7">
+                            <label for="mood-7">7</label>
+                            <input type="radio" id="mood-8" name="scale" value="8">
+                            <label for="mood-8">8</label>
+                            <input type="radio" id="mood-9" name="scale" value="9">
+                            <label for="mood-9">9</label>
+                            <input type="radio" id="mood-10" name="scale" value="10">
+                            <label for="mood-10">10</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <label for="journalentry" class="form-label">What's on your mind?</label>
+                    <textarea 
+                        name="journalentry" 
+                        id="journalentry"
+                        placeholder="Write your thoughts, feelings, or reflections here... Take your time."
+                        rows="8"
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span>Save Entry</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                        <polyline points="17,21 17,13 7,13 7,21"/>
+                        <polyline points="7,3 7,8 15,8"/>
+                    </svg>
+                </button>
+            </form>
+
+            <section class="entries-section">
+                <div class="entries-header">
+                    <h2>Your Journal Entries</h2>
+                    <button id="clear-all" class="clear-btn">Clear All</button>
+                </div>
+                <div id="entries" class="entries-container">
+                    <div class="no-entries">
+                        <p>No entries yet. Start by sharing how you're feeling today! 💭</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
