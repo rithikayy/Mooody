@@ -22,5 +22,3 @@ if st.button("Submit Entry"):
         st.session_state.df = add_to_df(data_row, st.session_state.df)
         st.success("Entry added!")
 
-# Optionally, display current entries or charts
-st.write(st.session_state.df)
