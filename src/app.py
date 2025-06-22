@@ -4,7 +4,7 @@ import pandas as pd
 from google import genai
 from google.genai import types
 
-columns = ["Date", "Anger_Score","Disgust_Score","Fear_Score","Joy_Score","Neutral_Score","Sadness_Score","Surprise_Score","Happiness_Score", "Text"]
+columns = ["Date", "Anger","Disgust","Fear","Joy","Neutral","Sadness","Surprise","Happiness Score", "Text"]
 
 df = pd.DataFrame(columns=columns) 
 
