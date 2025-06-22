@@ -65,6 +65,10 @@ project_4_page = st.Page(
     title = "Sketchbook"
 )
 
+with open("styles.css", encoding="utf-8") as f:
+    css = f.read()
+
+st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
 pg = st.navigation([home_page, project_1_page, project_2_page, project_3_page, project_4_page])
 
