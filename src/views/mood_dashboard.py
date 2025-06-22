@@ -5,10 +5,13 @@ from datetime import date
 from PIL import Image
 
 from app import df
+from main import addlogo
 
-st.logo("photos/newlogo.png", size="large")
 
-st.title("Moood Dashboard 🚀🐮")
+addlogo()
+
+st.title("Moood Dashboard")
+st.text("Welcome to your Moood Dashboard! Here, you can analyze your moods by filtering through your moods, reading your past journal entries, and more! 🚀🐮")
 df['Date'] = pd.to_datetime(df['Date'])  
 
 
@@ -64,7 +67,8 @@ span[data-baseweb="tag"]:has(span[title="Surprise"]) {
 """, unsafe_allow_html=True)
 
 st.subheader("Mood Trends: Choose your mood!")
-emotions_col = st.multiselect("Select emotions to plot", valid_moods)
+emotions_col = st.multiselect("Select mood(s) to plot", valid_moods)
+
 
 if st.button("Generate Plot") and emotions_col:
     st.line_chart(df.set_index('Date')[emotions_col])

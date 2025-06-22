@@ -1,8 +1,6 @@
 import streamlit as st
 from app import ask_ai, df
+from main import addlogo
+addlogo()
 
 st.title("Welcome to Mooody!")
-
-question = ask_ai(df)
-
-user_input = st.text_input(question)

@@ -3,6 +3,9 @@ from main import analyzelog
 import pandas as pd
 from google import genai
 from google.genai import types
+from main import addlogo
+
+addlogo()
 
 columns = ["Date", "Anger","Disgust","Fear","Joy","Neutral","Sadness","Surprise","Happiness Score", "Text"]
 

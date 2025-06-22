@@ -3,6 +3,7 @@ import csv
 from huggingface_hub import login
 from datetime import date
 import os
+import streamlit as st
 
 def analyzelog(text):
     emotion = pipeline("text-classification", model="j-hartmann/emotion-english-distilroberta-base", return_all_scores = True)
@@ -24,3 +25,9 @@ def analyzelog(text):
     data = [today_date, anger, disgust, fear, joy, neutral, sadness, surprise, happiness_score, text]
 
     return data
+
+def addlogo():
+    options = ["photos/justcow_logo.png", "photos/newlogo.png"]
+    sidebar_logo = options[1]
+    main_body_logo = options[0]
+    st.logo(sidebar_logo, size="large", icon_image=main_body_logo)
