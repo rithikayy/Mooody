@@ -1,6 +1,6 @@
 # 🐮 Mooody – Mental Health Journaling with AI-Powered Mood Insights
 
-Mooody is a mental health journaling app developed during a hackathon by **Arav**, **Rithika**, **Angelin**, and **Valence**. It blends the power of AI with interactive journaling to help users better understand and reflect on their emotions over time.
+Mooody is a mental health journaling app developed by **Arav**, **Rithika**, **Angelin**, and **Valence**. It blends the power of AI with interactive journaling to help users better understand and reflect on their emotions over time.
 
 ---
 
