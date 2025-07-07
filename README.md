@@ -35,3 +35,4 @@ Mooody is a mental health journaling app developed by **Arav**, **Rithika**, **A
 - **Chatbot**: Mr. Moo (Gemini integration)
 
 ---
+## Project Link: https://devpost.com/software/mooody-b1tkxf
