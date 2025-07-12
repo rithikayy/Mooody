@@ -4,6 +4,10 @@ from huggingface_hub import login
 from datetime import date
 import os
 import streamlit as st
+from dotenv import load_dotenv
+from therapist import get_response
+
+load_dotenv()
 
 def analyzelog(text):
     emotion = pipeline("text-classification", model="j-hartmann/emotion-english-distilroberta-base", return_all_scores = True)
@@ -31,3 +35,16 @@ def addlogo():
     sidebar_logo = options[1]
     main_body_logo = options[0]
     st.logo(sidebar_logo, size="large", icon_image=main_body_logo)
+
+
+if __name__ == "__main__":
+    print("Chatbot started. Type 'exit' to quit.")
+    history = []
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ("exit", "quit"):
+            break
+        response, history = get_response(user_input, history)
+        print("Therapist:", response)
+
+

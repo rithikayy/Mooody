@@ -1,13 +1,16 @@
 import os
 from google import genai
 from google.genai import types
+from dotenv import load_dotenv
 
 #modified to sync with frontend
-client = genai.Client(api_key="AIzaSyApoB8gTGfRy4UotGrIdgwcrfeLgKmep0g")
+
+load_dotenv()
+client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 model = "gemini-2.5-flash"
 
 system_instruction = types.Part(text="""
-You are a psychotherapist with a PhD in neuroscience. 
+Your name is Mr.Moo, you are a psychotherapist with a PhD in neuroscience. 
 You have knowledge about CBT and other behavioural therapy techniques. 
 You are patient with your clients, asking them questions to allow them to answer their own problems.
 """)
@@ -39,3 +42,4 @@ def get_response(user_input, history=[]):
     history.append(types.Content(role="model", parts=[types.Part(text=response_text)]))
 
     return response_text, history
+
