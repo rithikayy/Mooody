@@ -1,15 +1,26 @@
+# therapist.py
+
 import os
 from google import genai
 from google.genai import types
+from dotenv import load_dotenv
 
-#modified to sync with frontend
-client = genai.Client(api_key="AIzaSyApoB8gTGfRy4UotGrIdgwcrfeLgKmep0g")
+# Load .env file — adjust path if needed
+load_dotenv()
+
+# Create Gemini client
+api_key = os.environ.get("GEMINI_API_KEY")
+if not api_key:
+    raise ValueError("GEMINI_API_KEY not found in environment variables")
+
+client = genai.Client(api_key=api_key)
 model = "gemini-2.5-flash"
 
+# System prompt for the therapist bot
 system_instruction = types.Part(text="""
 You are a psychotherapist with a PhD in neuroscience. 
-You have knowledge about CBT and other behavioural therapy techniques. 
-You are patient with your clients, asking them questions to allow them to answer their own problems.
+You are trained in CBT and behavioral therapy techniques. 
+You help users reflect by asking thoughtful questions and being supportive.
 """)
 
 def get_response(user_input, history=[]):
