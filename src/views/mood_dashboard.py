@@ -17,7 +17,7 @@ df['Date'] = pd.to_datetime(df['Date'])
 
 
 st.subheader("Filter moods")
-available_cols = st.session_state.df.columns.tolist()
+available_cols = df.columns.tolist()
 valid_moods = [m for m in ["Anger","Disgust","Fear","Joy","Neutral","Sadness","Surprise"] if m in available_cols]
 selected_column = st.selectbox("Select mood to filter by", valid_moods)
 st.write(df[["Date",selected_column, "Text"]])
@@ -66,7 +66,7 @@ emotions_col = st.multiselect("Select mood(s) to plot", valid_moods)
 
 
 if st.button("Generate Plot") and emotions_col:
-    st.line_chart(st.session_state.df.set_index('Date')[emotions_col])
+    st.line_chart(df.set_index('Date')[emotions_col])
 
 
 # happiness score chart
