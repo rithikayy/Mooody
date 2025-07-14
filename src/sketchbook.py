@@ -48,7 +48,7 @@ def sketchai(pic_path):
   moods_split = response.text.split(",")
   mood_vals = []
   for mood in moods_split:
-    mood_vals.extend(re.findall(r' \d\.\d*', mood))
+    mood_vals.extend(re.findall(r' \d.\d', mood))
 
   for i in range(0, len(mood_vals)):
     mood_vals[i] = float(mood_vals[i])
@@ -62,6 +62,6 @@ def sketchai(pic_path):
   surprise = mood_vals[6]
 
   happiness_score = mood_vals[0]*1 + mood_vals[1]*4 + mood_vals[2]*2 + mood_vals[3]*10 + mood_vals[4]*5 +mood_vals[5]*1 + mood_vals[6]*6
+  data = [date.today(), anger, disgust, fear, joy, neutral, sadness, surprise, round(happiness_score), "Your beatiful artwork!"]
+  add_to_df(data, df)
 
-  data = [date.today(), anger, disgust, fear, joy, neutral, sadness, surprise, round(happiness_score), "Your beautiful artwork!"]
-  st.session_state.df = add_to_df(data, st.session_state.df)

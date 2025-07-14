@@ -14,7 +14,6 @@ b_color = st.sidebar.color_picker("Enter brush color hex: ", "#000000")
 bg_color = st.sidebar.color_picker("Enter background color hex: ", "#eeeeee")
 drawing_mode = "freedraw" if st.sidebar.checkbox("Drawing mode?", True) else "transform"
 
-# Create a canvas component
 canvas_result = st_canvas(
     stroke_width=b_width,
     stroke_color=b_color,
