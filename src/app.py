@@ -4,7 +4,10 @@ import pandas as pd
 from google import genai
 from google.genai import types
 from main import addlogo
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 addlogo()
 
 columns = ["Date", "Anger","Disgust","Fear","Joy","Neutral","Sadness","Surprise","Happiness Score", "Text"]
@@ -16,7 +19,11 @@ def add_to_df(data, df):
     df.loc[len(df)] = new_row
     return df
 
-client = genai.Client(api_key="AIzaSyApoB8gTGfRy4UotGrIdgwcrfeLgKmep0g")
+api_key = os.environ.get("GEMINI_API_KEY")
+if not api_key:
+    raise ValueError("GEMINI_API_KEY not found. Please add your Gemini API key to a .env file.")
+
+client = genai.Client(api_key=api_key)
 
 def ask_ai(df):
    data_frame = st.session_state.df.sort_values(by='Date') 
