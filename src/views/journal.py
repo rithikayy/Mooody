@@ -17,8 +17,8 @@ question = ask_ai(st.session_state.df)
 text_input = st.text_area(question, height=200, key="journal_entry")
 
 if st.button("Submit Entry"):
-    data_row = analyzelog(text_input)
-    if data_row is not None:
-        st.session_state.df = add_to_df(data_row, st.session_state.df)
-        st.success("Entry added!")
-
+   data_row = analyzelog(text_input)
+   if data_row is not None:
+      add_to_df(data_row, df)
+      st.success("Entry added!")
+   

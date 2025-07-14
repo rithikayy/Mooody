@@ -7,17 +7,23 @@ from main import addlogo
 import os
 from dotenv import load_dotenv
 
+file_path = "data.csv"
+
 load_dotenv()
 addlogo()
 
 columns = ["Date", "Anger","Disgust","Fear","Joy","Neutral","Sadness","Surprise","Happiness Score", "Text"]
 
+if os.path.exists(file_path):
+    df = pd.read_csv(file_path)
+else:
+    df = pd.DataFrame(columns=columns)
+
 df = pd.DataFrame(columns=columns) 
 
 def add_to_df(data, df):
-    new_row = pd.Series(data, index=df.columns)
-    df.loc[len(df)] = new_row
-    return df
+    df.loc[len(df)] = data
+    df.to_csv(file_path, index=False)
 
 api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
@@ -32,7 +38,7 @@ def ask_ai(df):
    else:
        latest_entry = "No journal entries yet."
 
-   new_q = latest_entry + "Ask a question based on this journal entry. Keep it open-ended and be specific! If it's empty or not much content, just ask a basic open-ended question like 'how's your day?' BE STRAIGHTFORWARD AND BRIEF"
+   new_q = latest_entry + "Ask a question based on this journal entry. Keep it open-ended and be specific! If it's empty or not much content, just ask a basic open-ended question like 'how's your day?' BE STRAIGHTFORWARD AND BRIEF. DO NOT MAKE UP YOUR OWN JOURNAL ENTRY"
 
    response = client.models.generate_content(
        model="gemini-2.5-flash",
@@ -64,6 +70,10 @@ project_4_page = st.Page(
     title = "Sketchbook"
 )
 
+with open("styles.css", encoding="utf-8") as f:
+    css = f.read()
+
+st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
 pg = st.navigation([home_page, project_1_page, project_2_page, project_3_page, project_4_page])
 
