@@ -8,13 +8,11 @@ addlogo()
 st.set_page_config(page_title="Mooody - Journal", page_icon="photos/justcow_logo.png")
 st.title("Journal")
 
-if 'df' not in st.session_state:
-    from app import df as app_df
-    st.session_state.df = app_df.copy()
+question = ask_ai(df)
 
-question = ask_ai(st.session_state.df)
+# user_input = st.text_input(question)
 
-text_input = st.text_area(question, height=200, key="journal_entry")
+text_input = st.text_area(question, height=200)
 
 if st.button("Submit Entry"):
    data_row = analyzelog(text_input)

@@ -50,3 +50,4 @@ def get_response(user_input, history=[]):
     history.append(types.Content(role="model", parts=[types.Part(text=response_text)]))
 
     return response_text, history
+

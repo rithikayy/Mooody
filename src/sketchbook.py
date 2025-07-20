@@ -45,6 +45,20 @@ def sketchai(pic_path):
   #   'sadness': 0.30,
   #   'surprise': 0.05
   # }
+
+  new_q = ("describe the drawing in one or two sentences max.")
+
+  draw_response = client.models.generate_content(
+      model='gemini-2.5-flash',
+      contents=[
+        types.Part.from_bytes(
+          data=image_bytes,
+          mime_type='image/jpeg',
+        ),
+        new_q
+      ]
+    )
+
   moods_split = response.text.split(",")
   mood_vals = []
   for mood in moods_split:
@@ -62,6 +76,6 @@ def sketchai(pic_path):
   surprise = mood_vals[6]
 
   happiness_score = mood_vals[0]*1 + mood_vals[1]*4 + mood_vals[2]*2 + mood_vals[3]*10 + mood_vals[4]*5 +mood_vals[5]*1 + mood_vals[6]*6
-  data = [date.today(), anger, disgust, fear, joy, neutral, sadness, surprise, round(happiness_score), "Your beatiful artwork!"]
+  data = [date.today(), anger, disgust, fear, joy, neutral, sadness, surprise, round(happiness_score), draw_response.text]
   add_to_df(data, df)
 

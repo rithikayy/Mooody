@@ -4,11 +4,10 @@ from huggingface_hub import login
 from datetime import date
 import os
 import streamlit as st
-from therapist import get_response
 from dotenv import load_dotenv
+from therapist import get_response
 
 load_dotenv()
-
 
 def analyzelog(text):
     emotion = pipeline("text-classification", model="j-hartmann/emotion-english-distilroberta-base", return_all_scores = True)
@@ -32,7 +31,7 @@ def analyzelog(text):
     return data
 
 def addlogo():
-    options = ["photos/justcow_logo.png", "photos/newlogo.png"]
+    options = ["src/photos/justcow_logo.png", "src/photos/newlogo.png"]
     sidebar_logo = options[1]
     main_body_logo = options[0]
     st.logo(sidebar_logo, size="large", icon_image=main_body_logo)
@@ -46,4 +45,6 @@ if __name__ == "__main__":
         if user_input.lower() in ("exit", "quit"):
             break
         response, history = get_response(user_input, history)
-        print("Mr.Moo:", response)
+        print("Therapist:", response)
+
+

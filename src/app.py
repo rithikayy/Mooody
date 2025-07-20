@@ -32,7 +32,7 @@ if not api_key:
 client = genai.Client(api_key=api_key)
 
 def ask_ai(df):
-   data_frame = st.session_state.df.sort_values(by='Date') 
+   data_frame = df.sort_values(by='Date') 
    if not data_frame.empty:
        latest_entry = data_frame.iloc[-1]['Text']
    else:
@@ -70,7 +70,7 @@ project_4_page = st.Page(
     title = "Sketchbook"
 )
 
-with open("styles.css", encoding="utf-8") as f:
+with open("src/styles.css", encoding="utf-8") as f:
     css = f.read()
 
 st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
