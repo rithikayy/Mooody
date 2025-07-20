@@ -32,7 +32,7 @@ if not api_key:
 client = genai.Client(api_key=api_key)
 
 def ask_ai(df):
-   data_frame = st.session_state.df.sort_values(by='Date') 
+   data_frame = df.sort_values(by='Date') 
    if not data_frame.empty:
        latest_entry = data_frame.iloc[-1]['Text']
    else:
