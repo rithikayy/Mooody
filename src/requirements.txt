@@ -5,3 +5,4 @@ matplotlib
 google-genai
 python-dotenv
 streamlit-drawable-canvas
+torch
