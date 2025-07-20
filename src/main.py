@@ -31,7 +31,7 @@ def analyzelog(text):
     return data
 
 def addlogo():
-    options = ["photos/justcow_logo.png", "photos/newlogo.png"]
+    options = ["src/photos/justcow_logo.png", "src/photos/newlogo.png"]
     sidebar_logo = options[1]
     main_body_logo = options[0]
     st.logo(sidebar_logo, size="large", icon_image=main_body_logo)
